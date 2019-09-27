@@ -1,0 +1,22 @@
+//@import "~_variables.scss";
+
+.signup {
+    padding-top: 40px;
+    max-width: 600px;
+    margin: 40px auto;
+    //background-color: $primary;
+
+    mat-form-field {
+        margin: 10px 0;
+        width: 100%;
+        display: block;
+        .mat-form-field-infix {
+            width: 100%;
+        }
+    }
+
+    button {
+        margin: 20px auto 10px auto;
+        min-width: 50%;
+    }
+}

@@ -1,0 +1,35 @@
+<mat-card class="signup" fxLayout="column" fxLayoutAlign="center center">
+    <mat-card-title>Signup</mat-card-title>
+    <p>or <a href="javascript: void(0);" routerLink="/login">login</a></p>
+    <mat-card-content>
+        <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" #formRef="ngForm" (ngSubmit)="onSubmit(formRef)">
+
+            <mat-form-field>
+                <input type="email" matInput placeholder="Your email" ngModel name="email" email required #emailInput="ngModel">
+                <mat-error *ngIf="emailInput.hasError('required')">Field must no be empty</mat-error>
+                <mat-error *ngIf="!emailInput.hasError('required')">Email is invalid</mat-error>
+            </mat-form-field>
+
+            <!-- hintLabel is the same as <mat-hint> -->
+            <mat-form-field hintLabel="Minimum 6 characters">
+                <input type="password" matInput placeholder="Password" ngModel name="password" required minlength="6" #pwInput="ngModel">
+                <mat-hint align="end">{{pwInput.value?.length}} / 6</mat-hint>
+                <mat-error>+6! mat-error overrides hint</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <!-- after setting age minimum to 18 [max]="maxDate" doesn't even show the last 18 years-->
+                <input matInput placeholder="Your birthdate" [matDatepicker]="pickerRef" [max]="maxDate" ngModel name="birthday" required>
+                <mat-datepicker-toggle matSuffix [for]="pickerRef"></mat-datepicker-toggle>
+                <mat-datepicker #pickerRef></mat-datepicker>
+            </mat-form-field>
+
+            <mat-checkbox ngModel name="agree" required color="primary">
+                Agree to <a href="javascript: void(0);" routerLink="/terms">terms and conditions</a>
+            </mat-checkbox>
+
+            <button type="submit" mat-raised-button color="primary" [disabled]="formRef.invalid">Submit</button>
+
+        </form>
+    </mat-card-content>
+</mat-card>

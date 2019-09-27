@@ -1,0 +1,38 @@
+<mat-card class="loginpage" fxLayout="column" fxLayoutAlign="center center">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+        <div [formGroup]="loginForm">
+
+            <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" (ngSubmit)="onSubmit()">
+
+                <mat-form-field>
+                    <input type="email" matInput placeholder="Your email" formControlName="ctrlEmail">
+                    <!-- <mat-error *ngIf="emailInput.hasError('required')">Field must no be empty</mat-error>
+                    <mat-error *ngIf="!emailInput.hasError('required')">Email is invalid</mat-error> -->
+                </mat-form-field>
+
+                <!-- hintLabel is the same as <mat-hint> -->
+                <mat-form-field hintLabel="Minimum 6 characters">
+                    <input type="password" matInput placeholder="Password" formControlName="ctrlPassword">
+                    <!-- <mat-hint align="end">{{pwInput.value?.length}} / 6</mat-hint>
+                    <mat-error>+6! mat-error overrides hint</mat-error> -->
+                </mat-form-field>
+
+                <mat-form-field>
+                    <!-- after setting age minimum to 18 [max]="maxDate" doesn't even show the last 18 years-->
+                    <input matInput placeholder="Your birthdate" [matDatepicker]="pickerRef" formControlName="ctrlBirthday">
+                    <mat-datepicker-toggle matSuffix [for]="pickerRef"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerRef></mat-datepicker>
+                </mat-form-field>
+
+                <mat-checkbox color="primary" formControlName="ctrlAgree">
+                    Agree to <a href="javascript: void(0);" routerLink="/terms">terms and conditions</a>
+                </mat-checkbox>
+
+                <button type="submit" mat-raised-button color="primary" [disabled]="formRef.invalid">Submit</button>
+
+            </form>
+
+        </div>
+    </mat-card-content>
+</mat-card>

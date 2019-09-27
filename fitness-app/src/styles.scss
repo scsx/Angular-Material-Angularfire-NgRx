@@ -1,0 +1,29 @@
+// CLI
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// VARS https://material.angular.io/guide/theming-your-components
+@import '~@angular/material/theming';
+
+
+// GENERAL
+// id added because overriding material styles was being tricky
+body#body {
+
+    background: #2121ad;
+
+    mat-card-title {
+        margin-top: 0;
+        font-weight: 300;
+        font-size: 45px;
+    }
+}
+
+// #body
