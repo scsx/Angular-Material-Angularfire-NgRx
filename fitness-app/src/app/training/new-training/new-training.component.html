@@ -1,1 +1,32 @@
-<p>new-training works!</p>
+<section fxLayout fxLayoutAlign="center" class="new">
+    <mat-card>
+        <mat-card-title>Time to start a new exercise</mat-card-title>
+        <mat-card-content>
+            <mat-card-actions>
+                <h4>Select exercise</h4>
+
+                <mat-form-field class="choose" placeholder="Favorite one">
+                    <mat-select>
+                        <mat-option value="crunches">
+                            Crunches
+                        </mat-option>
+                        <mat-option value="abs">
+                            Abs
+                        </mat-option>
+                        <mat-option value="sidelunges">
+                            Side Lunges
+                        </mat-option>
+                        <mat-option value="jogging">
+                            Jogging
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <button type="submit" mat-fab color="primary" (click)="onStartTraining()">
+                    <span class="text">Start</span>
+                </button>
+
+            </mat-card-actions>
+        </mat-card-content>
+    </mat-card>
+</section>

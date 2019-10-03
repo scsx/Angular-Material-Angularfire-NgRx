@@ -1,45 +1,61 @@
-// CLI
+//// CLI
 html,
 body {
     height: 100%;
 }
 
+// VARS https://material.angular.io/guide/theming-your-components
+// Import material theming functions
+@import '~@angular/material/theming';
+// Copy the palettes from your selected theme (usually theme.scss).
+$app-primary: mat-palette($mat-grey);
+$app-accent:  mat-palette($mat-light-blue);
+$app-warn:    mat-palette($mat-pink);
+// Create your Sass color vars (will be available in all the project)
+$grey: mat-color($app-primary);
+$blue: mat-color($app-accent);
+$pink: mat-color($app-warn);
+// redone
+$primarypurple: #2121ad;
+$white: #ffffff;
+
+
+//// OVERRIDE STYLES
+// Change Autocomplete Styles in WebKit
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: none;
+    -webkit-text-fill-color: #2121ad; // purple added according to theme
+    box-shadow: 0 0 0px 1000px #fff inset;
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
+//// CUSTOM
 body {
     margin: 0;
+    background: #f4f4f4;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-// VARS https://material.angular.io/guide/theming-your-components
-@import '~@angular/material/theming';
-
-
-// GENERAL
-// id added because overriding material styles was being tricky
-body#body {
-
-    // Change Autocomplete Styles in WebKit
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    textarea:-webkit-autofill,
-    textarea:-webkit-autofill:hover,
-    textarea:-webkit-autofill:focus,
-    select:-webkit-autofill,
-    select:-webkit-autofill:hover,
-    select:-webkit-autofill:focus {
-        border: none;
-        -webkit-text-fill-color: #2121ad; // purple added according to theme
-        -webkit-box-shadow: 0 0 0px 1000px #fff inset;
-        transition: background-color 5000s ease-in-out 0s;
-    }
-
-    background: #2121ad;
-
-    mat-card-title {
-        margin-top: 0;
-        font-weight: 300;
-        font-size: 45px;
-    }
+a {
+    text-decoration: none;
+    color: $primarypurple;
 }
 
-// #body
+h1,
+mat-card-title,
+.mat-card-title {
+    margin-top: 0;
+    font-weight: 300;
+    font-size: 45px;
+}
+

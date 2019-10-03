@@ -1,1 +1,13 @@
-<p>current works!</p>
+<section fxLayout fxLayoutAlign="center" class="current">
+    <mat-card>
+        <mat-card-title>Get going!</mat-card-title>
+        <mat-card-content>
+
+            <mat-progress-spinner mode="determinate" [value]="progress"></mat-progress-spinner>
+            <h3>{{progress}}<small>%</small></h3>
+            <button type="submit" mat-fab color="warn" (click)="stopTimer()">
+                <span class="text">Stop</span>
+            </button>
+        </mat-card-content>
+    </mat-card>
+</section>

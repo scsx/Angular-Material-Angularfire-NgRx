@@ -1,5 +1,6 @@
-<mat-card class="loginpage">
+<mat-card class="loginpage" fxLayout="column" fxLayoutAlign="center center">
     <mat-card-title>Login</mat-card-title>
+    <p>or <a href="javascript: void(0);" routerLink="/signup">Signup</a></p>
     <mat-card-content>
         <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 

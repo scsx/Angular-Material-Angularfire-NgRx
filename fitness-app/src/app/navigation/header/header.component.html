@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+    <div class="menubtn" fxHide.gt-xs>
+        <button mat-icon-button (click)="onToggleSidenav()">
+            <mat-icon aria-hidden="false" aria-label="motorcycle icon">menu</mat-icon>
+        </button>
+    </div>
+    <div class="logo">
+        <a routerLink="/">Fitness App</a>
+    </div>
+    <nav fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+        <a routerLink="/signup">Signup</a>
+        <a routerLink="/training">Training</a>
+        <a routerLink="/login">Login</a>
+        <a href="javascript: void(0)">Logout</a>
+    </nav>
+</mat-toolbar>

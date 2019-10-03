@@ -1,5 +1,12 @@
-<!-- <h1>Hey</h1>
-<button mat-raised-button color="accent">Click me</button>
-<mat-icon aria-hidden="false" aria-label="motorcycle icon">motorcycle</mat-icon>
- -->
-<router-outlet></router-outlet>
+<mat-sidenav-container class="xxx">
+    <mat-sidenav #sideNavRef role="navigation">
+        <app-sidenav-list (closeSidenav)="sideNavRef.close()"></app-sidenav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <!-- toggle from child cpt (EventEmitter, Output) -->
+        <app-header (sidenavToggle)="sideNavRef.toggle()"></app-header>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,25 @@
+.new {
+    max-width: 600px;
+        margin: 40px auto;
+    mat-card {
+        width: 100%;
+        text-align: center;
+        h4 {
+            margin-bottom: 0;
+        }
+        .choose {
+            display: block;
+            max-width: 300px;
+            margin: auto;
+        }
+        button {
+            width: 80px;
+            height: 80px;
+            margin-top: 20px;
+            span.text {
+                font-size: 18px;
+                font-weight: 300;
+            }
+        }
+    }
+}

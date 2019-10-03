@@ -3,14 +3,23 @@
     max-width: 600px;
     margin: 40px auto;
 
-    /* mat-form-field {
-        margin: 10px 0;
+    mat-card-content {
         width: 100%;
-        display: block;
-        .mat-form-field-infix {
-            width: 100%;
+
+        form {
+            max-width: 400px;
+            margin: auto;
+
+            mat-form-field {
+                margin: 10px 0;
+                width: 100%;
+                display: block;
+                .mat-form-field-infix {
+                    width: 100%;
+                }
+            }
         }
-    } */
+    }
 
     button {
         margin: 20px auto 10px auto;

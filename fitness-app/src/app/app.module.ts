@@ -17,6 +17,9 @@ import { PastTrainingsComponent } from './training/past-trainings/past-trainings
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TermsComponent } from './terms/terms.component';
+import { HeaderComponent } from './navigation/header/header.component';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { StopTrainingComponent } from './training/current/stop-training.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +31,10 @@ import { TermsComponent } from './terms/terms.component';
         NewTrainingComponent,
         PastTrainingsComponent,
         WelcomeComponent,
-        TermsComponent
+        TermsComponent,
+        HeaderComponent,
+        SidenavListComponent,
+        StopTrainingComponent
     ],
     imports: [
         HttpClientModule ,
@@ -41,6 +47,9 @@ import { TermsComponent } from './terms/terms.component';
         FlexLayoutModule
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [
+        StopTrainingComponent
+    ]
 })
 export class AppModule {}
