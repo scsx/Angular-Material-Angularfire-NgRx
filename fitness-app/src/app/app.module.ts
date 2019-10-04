@@ -21,6 +21,8 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { StopTrainingComponent } from './training/current/stop-training.component';
 
+// import { AuthService } from './auth/auth.service';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -46,7 +48,9 @@ import { StopTrainingComponent } from './training/current/stop-training.componen
         AppRoutingModule,
         FlexLayoutModule
     ],
-    providers: [],
+    providers: [
+        // AuthService // removed because is being @Injectable({ providedIn: 'root' })
+    ],
     bootstrap: [AppComponent],
     entryComponents: [
         StopTrainingComponent

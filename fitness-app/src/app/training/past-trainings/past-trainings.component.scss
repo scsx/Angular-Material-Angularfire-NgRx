@@ -1,0 +1,19 @@
+.past {
+    max-width: 900px;
+    min-width: 50%;
+    margin: 40px auto;
+
+    mat-card {
+        width: 100%;
+        padding: 16px 35px;
+        mat-card-title {
+            text-align: center;
+        }
+        .filter {
+            margin: 0;
+        }
+        mat-paginator {
+            margin-top: 20px;
+        }
+    }
+}

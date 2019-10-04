@@ -1,32 +1,25 @@
 <section fxLayout fxLayoutAlign="center" class="new">
-    <mat-card>
+    <form (ngSubmit)="onStartTraining(formRef)" #formRef="ngForm">
+        <mat-card>
         <mat-card-title>Time to start a new exercise</mat-card-title>
         <mat-card-content>
             <mat-card-actions>
-                <h4>Select exercise</h4>
+                <h4>Select an exercise</h4>
 
-                <mat-form-field class="choose" placeholder="Favorite one">
-                    <mat-select>
-                        <mat-option value="crunches">
-                            Crunches
-                        </mat-option>
-                        <mat-option value="abs">
-                            Abs
-                        </mat-option>
-                        <mat-option value="sidelunges">
-                            Side Lunges
-                        </mat-option>
-                        <mat-option value="jogging">
-                            Jogging
+                <mat-form-field class="choose">
+                    <mat-select placeholder="Choose one" ngModel name="inputExercise" required>
+                        <mat-option *ngFor="let ex of exercises" [value]="ex.id">
+                            {{ ex.name }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
 
-                <button type="submit" mat-fab color="primary" (click)="onStartTraining()">
+                <button type="submit" mat-fab color="primary" [disabled]="formRef.invalid">
                     <span class="text">Start</span>
                 </button>
 
             </mat-card-actions>
         </mat-card-content>
     </mat-card>
+    </form>
 </section>
