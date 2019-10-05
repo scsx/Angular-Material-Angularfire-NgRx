@@ -22,6 +22,7 @@ export class TrainingComponent implements OnInit {
                 this.ongoingTraining = false;
             }
         });
+
     }
 
 }

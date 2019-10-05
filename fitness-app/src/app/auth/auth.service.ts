@@ -3,50 +3,63 @@ import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { IUser } from './user.model';
 import { IAuthData } from './auth-data.model';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { TrainingService } from '../training/training.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
-    private user: IUser;
+    private isAuthenticated = false;
     authChange = new Subject<boolean>();
-    // assumes true = logged in and is called like this.authChange.next(true/false);
+    // assumes true = logged in; is called like this.authChange.next(true/false);
 
-    constructor(private router: Router) {}
+    constructor(
+        private router: Router,
+        private afAuth: AngularFireAuth,
+        private trService: TrainingService) {}
 
     registerUser(authData: IAuthData) {
-        this.user = {
-            email: authData.email,
-            userId: Math.round(Math.random() * 10000).toString()
-        };
-        this.authSuccessfully(true, '/training');
+        this.afAuth.auth.createUserWithEmailAndPassword(
+            authData.email,
+            authData.password
+        ).then(result => {
+            this.authSuccessfully(true, '/training');
+        }).catch(error => {
+            console.log(error);
+        });
     }
 
     login(authData: IAuthData) {
-        this.user = {
-            email: authData.email,
-            userId: Math.round(Math.random() * 10000).toString()
-        };
-        this.authSuccessfully(true, '/training');
+
+        this.afAuth.auth.signInWithEmailAndPassword(
+            authData.email,
+            authData.password
+        ).then(result => {
+            this.authSuccessfully(true, '/training');
+        }).catch(error => {
+            console.log(error);
+        });
     }
 
     logout() {
-        this.user = null;
+        this.trService.cancelSubscriptions(); // manage logout problems, aula 96
+        this.isAuthenticated = false;
         this.authSuccessfully(false, '/login');
     }
 
     // getUser() because user: IUser is private
-    getUser() {
-        // spread operator to copy User without chaning the original
-        return { ...this.user};
-    }
+    /* getUser() {
+        return { ...this.user}; // spread operator to copy User without chaning the original
+    } */
 
     isAuth() {
-        return this.user != null;
+        return this.isAuthenticated;
     }
 
     private authSuccessfully(next: boolean, whereTo: string) {
+        this.isAuthenticated = true;
         this.authChange.next(next);
         this.router.navigate([whereTo]);
     }

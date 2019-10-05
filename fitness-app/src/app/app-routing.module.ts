@@ -11,10 +11,9 @@ const routes: Routes = [
     { path: '', component: WelcomeComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'training', component: TrainingComponent },
-    /* { path: 'training', component: TrainingComponent, canActivate: [
+    { path: 'training', component: TrainingComponent, canActivate: [
         AuthGuard // array of classes
-    ] }, */
+    ] },
     { path: 'terms', component: TermsComponent }
 ];
 
@@ -27,8 +26,4 @@ const routes: Routes = [
     ]
 })
 
-export class AppRoutingModule {
-    constructor() {
-        console.warn("###### HEY I'm a constructor remove me and uncomment the Guard");
-    }
-}
+export class AppRoutingModule {}
