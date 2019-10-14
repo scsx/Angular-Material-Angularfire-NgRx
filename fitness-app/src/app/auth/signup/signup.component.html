@@ -28,7 +28,10 @@
                 Agree to <a href="javascript: void(0);" routerLink="/terms">terms and conditions</a>
             </mat-checkbox>
 
-            <button type="submit" mat-raised-button color="primary" [disabled]="formRef.invalid">Submit</button>
+            <button *ngIf="!isLoading" type="submit" mat-raised-button color="primary" [disabled]="formRef.invalid">Submit</button>
+
+            <!-- loading -->
+            <mat-spinner *ngIf="isLoading"></mat-spinner>
 
         </form>
     </mat-card-content>

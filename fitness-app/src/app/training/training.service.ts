@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
+import { UIService } from '../shared/ui.service';
 
 @Injectable({
     providedIn: 'root'
@@ -23,14 +24,17 @@ export class TrainingService {
     private runningExercise: IExercise;
     private fbSubs$: Subscription[] = [];
 
-    constructor(private db: AngularFirestore) {}
+    constructor(private db: AngularFirestore, private uiService: UIService) {}
 
     // this subscription replaces itself;
     // if we navigate back and forth the component calls this again but doesnt "pile up" subscriptions
     fetchAvailableExercises() {
+        this.uiService.loadingStateChanged.next(true);
         this.fbSubs$.push(
             this.db.collection('availableExercises').snapshotChanges().pipe(
                 map( docArray => {
+                    // test this.uiService.showSnackbar(error)
+                    // throw(new Error());
                     return docArray.map(doc => {
                         return {
                             id: doc.payload.doc.id,
@@ -44,10 +48,14 @@ export class TrainingService {
                     });
                 })
             ).subscribe((exercises: IExercise[]) => {
+                this.uiService.loadingStateChanged.next(false);
                 this.availableExercises = exercises;
                 this.exercisesChanged$.next([...this.availableExercises]);
-            })
-        );
+            }, error => {
+                this.uiService.loadingStateChanged.next(false);
+                this.uiService.showSnackbar('Fetching exercises failed, try later!', null, 10000);
+                this.exercisesChanged$.next(null);
+            }));
     }
 
     completeExercise() {

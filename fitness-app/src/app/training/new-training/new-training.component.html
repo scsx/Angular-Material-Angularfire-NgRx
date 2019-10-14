@@ -6,7 +6,7 @@
             <mat-card-actions>
                 <h4>Select an exercise</h4>
 
-                <mat-form-field class="choose">
+                <mat-form-field class="choose" *ngIf="!isLoading && exercises">
                     <mat-select placeholder="Choose one" ngModel name="inputExercise" required>
                         <mat-option *ngFor="let ex of exercises" [value]="ex.id">
                             {{ ex.name }}
@@ -14,8 +14,14 @@
                     </mat-select>
                 </mat-form-field>
 
-                <button type="submit" mat-fab color="primary" [disabled]="formRef.invalid">
+                <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+                <button type="submit" mat-fab color="primary" [disabled]="formRef.invalid" *ngIf="exercises">
                     <span class="text">Start</span>
+                </button>
+
+                <button type="button" mat-fab color="primary" *ngIf="!exercises" (click)="fetchExercises()">
+                    <span class="text">Get ex's</span>
                 </button>
 
             </mat-card-actions>

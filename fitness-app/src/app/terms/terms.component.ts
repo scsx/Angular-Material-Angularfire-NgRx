@@ -30,7 +30,9 @@ export class TermsComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.termsSub$.unsubscribe();
+        if (this.termsSub$) {
+            this.termsSub$.unsubscribe();
+        }
     }
 
 }
